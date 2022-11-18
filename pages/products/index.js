@@ -7,6 +7,11 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState(null); //"Food", "Technology"
 
+   const [shouldReload, setShouldReload]= useState (true); 
+
+
+<button className="button" event="click">Delete item</button>
+
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -26,9 +31,28 @@ const Products = () => {
         console.log(error);
         alert(error.message);
       }
+
+      setShouldReload (false)
     };
-    getProducts();
-  }, [categoryFilter]);
+    if (shouldReload) {
+      getProducts()};
+  }, [categoryFilter, shouldReload]);
+
+    async function deleteItem (id) {
+      
+      try {
+        const response=  await fetch (`/api/products/${id}`, {method:"DELETE"}) 
+        if (response.ok ){
+          alert('Product has been deleted.');
+        }   else {
+          alert ('Operation not completed.');
+        }
+      } catch (error) {
+        alert (error.message)
+      }
+setShouldReload(true);
+    }
+
 
   return (
     <>
@@ -52,15 +76,21 @@ const Products = () => {
           <option value="Food">Food</option>
           <option value="Technology">Technology</option>
         </select>
+        
+
+
         <p>{categoryFilter}</p>
         <ul className={styles["product-list"]}>
           {products.map((product) => {
+ 
             return (
               <li key={product._id}>
                 <Link href={`/products/${product._id}`}>{product.name}</Link>
+                <button onClick={ () => deleteItem (product._id)}>Delete</button>
               </li>
+              
             );
-          })}
+            })}
         </ul>
       </div>
     </>

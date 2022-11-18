@@ -1,6 +1,11 @@
 import connectDB from "../_db/connect-db";
 import { Product } from "../_db/models/Product";
 
+
+<button className="button" event="click">Delete item</button>
+
+
+
 async function handler(req, res) {
   switch (req.method) {
     case "GET":
@@ -32,6 +37,12 @@ async function handler(req, res) {
     default:
       return res.status(400).json({ error: "method not supported" });
   }
+
+  
+  
 }
+
+
+
 
 export default connectDB(handler);
