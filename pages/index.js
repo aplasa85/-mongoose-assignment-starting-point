@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <MyHeading>Ceci n'est pas une pipe!</MyHeading>
+      <MyHeading>Ceci n`est pas une pipe!</MyHeading>
 
       <div>
         <Link href="/products">Links</Link>
