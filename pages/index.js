@@ -12,14 +12,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <MyHeading>Ich bin live!!</MyHeading>
+      <MyHeading>Ceci n'est pas une pipe!</MyHeading>
 
       <div>
-        <Link href="/products">Zu den Produkten per Link</Link>
+        <Link href="/products">Links</Link>
       </div>
     </div>
   );
 }
+
 
 const MyHeading = styled.h1`
   color: green;
